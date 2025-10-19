@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathay Pacific - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="CATHAY.png" alt="Cathay Pacific" class="logo">
+        <button class="sign-in-btn">Sign In / Sign Up</button>
+    </header>
+
+    <main class="main-content">
+        <!-- Current Itinerary Section -->
+        <section class="itinerary-section">
+            <h2>Current Itinerary</h2>
+            <div class="itinerary-card">
+                <div class="flight-info">
+                    <div class="route">
+                        <div class="departure">
+                            <h3>HKG</h3>
+                            <p>Hong Kong</p>
+                            <p class="time">14:30</p>
+                            <p class="date">11 Sept 2077</p>
+                        </div>
+                        <div class="flight-duration">
+                            <div class="duration-line"></div>
+                            <p class="duration">12h 45m</p>
+                            <p class="flight-number">CX 880</p>
+                        </div>
+                        <div class="arrival">
+                            <h3>JFK</h3>
+                            <p>New York</p>
+                            <p class="time">18:15</p>
+                            <p class="date">11 Sept 2077</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="itinerary-details">
+                    <div class="detail-item">
+                        <span class="label">Boarding Time:</span>
+                        <span class="value">13:45</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Gate:</span>
+                        <span class="value">B25</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Seat:</span>
+                        <span class="value">32A</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Terminal:</span>
+                        <span class="value">Terminal 1</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Assistant Section -->
+        <section class="assistant-section">
+            <h2>Cathay AI Assistant</h2>
+            <div class="chatbot-container">
+                <ul class="chatbox">
+                    <!-- Messages will be dynamically added here -->
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Ask about flights, destinations, or travel..." rows="1"></textarea>
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <div class="nav-icon">🏠</div>
+            <span>Home</span>
+        </a>
+        <a href="airport-info.html" class="nav-item">
+            <div class="nav-icon">✈️</div>
+            <span>Airport</span>
+        </a>
+        <a href="onboard-services.html" class="nav-item">
+            <div class="nav-icon">🍽️</div>
+            <span>Onboard</span>
+        </a>
+        <a href="travel-checklist.html" class="nav-item">
+            <div class="nav-icon">📍</div>
+            <span>Travel Map</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>

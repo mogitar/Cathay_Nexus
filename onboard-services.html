@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathay Pacific - Onboard Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="CATHAY.png" alt="Cathay Pacific" class="logo">
+        <button class="sign-in-btn">Sign In / Sign Up</button>
+    </header>
+
+    <main class="main-content">
+        <section class="onboard-services-section">
+            <h2>Onboard Services</h2>
+            
+            <div class="service-categories">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-tab="dining">Dining</button>
+                    <button class="tab-btn" data-tab="entertainment">Entertainment</button>
+                    <button class="tab-btn" data-tab="comfort">Comfort</button>
+                </div>
+                
+                <div class="tab-content active" id="dining">
+                    <h3>In-Flight Dining</h3>
+                    
+                    <div class="meal-selection">
+                        <h4>Pre-order Your Meal</h4>
+                        <div class="meal-options">
+                            <div class="meal-option">
+                                <div class="meal-info">
+                                    <h5>Western Selection</h5>
+                                    <p>Grilled chicken with roasted vegetables and mashed potatoes</p>
+                                    <div class="meal-tags">
+                                        <span class="tag">Main</span>
+                                        <span class="tag dietary">Regular</span>
+                                    </div>
+                                </div>
+                                <button class="select-btn">Select</button>
+                            </div>
+                            
+                            <div class="meal-option">
+                                <div class="meal-info">
+                                    <h5>Asian Vegetarian</h5>
+                                    <p>Vegetable curry with jasmine rice and lentil soup</p>
+                                    <div class="meal-tags">
+                                        <span class="tag">Main</span>
+                                        <span class="tag dietary">Vegetarian</span>
+                                    </div>
+                                </div>
+                                <button class="select-btn">Select</button>
+                            </div>
+                            
+                            <div class="meal-option">
+                                <div class="meal-info">
+                                    <h5>Seafood Special</h5>
+                                    <p>Poached salmon with dill sauce and seasonal vegetables</p>
+                                    <div class="meal-tags">
+                                        <span class="tag">Main</span>
+                                        <span class="tag dietary">Pescatarian</span>
+                                    </div>
+                                </div>
+                                <button class="select-btn">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beverage-selection">
+                        <h4>Beverages</h4>
+                        <div class="beverage-options">
+                            <div class="beverage-category">
+                                <h5>Wines</h5>
+                                <div class="beverage-list">
+                                    <div class="beverage-item">
+                                        <span class="beverage-name">Chardonnay, California</span>
+                                        <button class="order-btn">Order</button>
+                                    </div>
+                                    <div class="beverage-item">
+                                        <span class="beverage-name">Cabernet Sauvignon, France</span>
+                                        <button class="order-btn">Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="beverage-category">
+                                <h5>Non-Alcoholic</h5>
+                                <div class="beverage-list">
+                                    <div class="beverage-item">
+                                        <span class="beverage-name">Fresh Orange Juice</span>
+                                        <button class="order-btn">Order</button>
+                                    </div>
+                                    <div class="beverage-item">
+                                        <span class="beverage-name">Sparkling Water</span>
+                                        <button class="order-btn">Order</button>
+                                    </div>
+                                    <div class="beverage-item">
+                                        <span class="beverage-name">Coca-Cola</span>
+                                        <button class="order-btn">Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="entertainment">
+                    <h3>Entertainment</h3>
+                    
+                    <div class="entertainment-categories">
+                        <div class="ent-category">
+                            <h4>Movies</h4>
+                            <div class="ent-list">
+                                <div class="ent-item">
+                                    <div class="ent-poster"></div>
+                                    <div class="ent-info">
+                                        <h5>Latest Releases</h5>
+                                        <p>Browse our collection of new movies</p>
+                                        <button class="browse-btn">Browse</button>
+                                    </div>
+                                </div>
+                                <div class="ent-item">
+                                    <div class="ent-poster"></div>
+                                    <div class="ent-info">
+                                        <h5>Hollywood Classics</h5>
+                                        <p>Timeless films from the golden era</p>
+                                        <button class="browse-btn">Browse</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ent-category">
+                            <h4>TV Shows</h4>
+                            <div class="ent-list">
+                                <div class="ent-item">
+                                    <div class="ent-poster"></div>
+                                    <div class="ent-info">
+                                        <h5>Popular Series</h5>
+                                        <p>Binge-watch your favorite shows</p>
+                                        <button class="browse-btn">Browse</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="comfort">
+                    <h3>Comfort & Services</h3>
+                    
+                    <div class="comfort-options">
+                        <div class="comfort-item">
+                            <div class="comfort-icon">🛏️</div>
+                            <div class="comfort-info">
+                                <h4>Pillow & Blanket</h4>
+                                <p>Request extra comfort items</p>
+                            </div>
+                            <button class="request-btn">Request</button>
+                        </div>
+                        
+                        <div class="comfort-item">
+                            <div class="comfort-icon">🎧</div>
+                            <div class="comfort-info">
+                                <h4>Noise-Cancelling Headphones</h4>
+                                <p>Available for premium cabins</p>
+                            </div>
+                            <button class="request-btn">Request</button>
+                        </div>
+                        
+                        <div class="comfort-item">
+                            <div class="comfort-icon">🔌</div>
+                            <div class="comfort-info">
+                                <h4>USB Charging Port</h4>
+                                <p>Located at your seat</p>
+                            </div>
+                            <div class="availability">Available</div>
+                        </div>
+                        
+                        <div class="comfort-item">
+                            <div class="comfort-icon">WiFi</div>
+                            <div class="comfort-info">
+                                <h4>Inflight WiFi</h4>
+                                <p>Stay connected during your flight</p>
+                            </div>
+                            <button class="connect-btn">Connect</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="current-orders">
+                <h3>Your Orders</h3>
+                <div class="orders-list">
+                    <div class="order-item">
+                        <div class="order-details">
+                            <h5>Orange Juice</h5>
+                            <p>Ordered: 14:25</p>
+                        </div>
+                        <div class="order-status preparing">Preparing</div>
+                    </div>
+                    <div class="no-orders" style="display: none;">
+                        <p>You haven't placed any orders yet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <span>Home</span>
+        </a>
+        
+        <a href="airport-info.html" class="nav-item">
+            <div class="nav-icon">✈️</div>
+            <span>Airport</span>
+        </a>
+        <a href="onboard-services.html" class="nav-item active">
+            <div class="nav-icon">🍽️</div>
+            <span>Onboard</span>
+        </a>
+        <a href="travel-checklist.html" class="nav-item">
+            <div class="nav-icon">📍</div>
+            <span>Travel Map</span>
+        </a>
+    </nav>
+
+    <script src="onboard-services.js"></script>
+</body>
+</html>

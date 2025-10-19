@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- This viewport tag is essential for proper mobile rendering:cite[1] -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathay Assistance</title>
+    <style>
+        /* Basic Reset & Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Ensures the body takes the full viewport height:cite[10] */
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2F8D46; /* A green tone, often associated with travel and reliability */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+        }
+
+        /* Sign In/Up Button Styling:cite[2] */
+        .sign-in-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Chatbot Area */
+        .chatbot-container {
+            flex: 1; /* Allows the chatbot container to take up all remaining space */
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chatbox Message Area */
+        .chatbox {
+            list-style: none;
+            padding: 15px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .chat {
+            margin-bottom: 15px;
+            display: flex;
+        }
+
+        .chat p {
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .chat-incoming {
+            justify-content: flex-start;
+        }
+
+        .chat-incoming p {
+            background-color: #eaeaea;
+            color: #333;
+        }
+
+        .chat-outgoing {
+            justify-content: flex-end;
+        }
+
+        .chat-outgoing p {
+            background-color: #162887;
+            color: #fff;
+        }
+
+        /* Input Area */
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #ccc;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input textarea {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            resize: none;
+            outline: none;
+            font-size: 16px;
+            height: 50px;
+        }
+
+        .chat-input button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #2F8D46;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .chat-input button:hover {
+            background-color: #237235;
+        }
+
+        /* Loading/Error States */
+        .chat p.error {
+            background-color: #ff3737e8;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cathay Assistance</h1>
+        <button class="sign-in-btn">Sign In / Sign Up</button>
+    </header>
+
+    <main class="chatbot-container">
+        <ul class="chatbox">
+            <!-- Initial greeting message -->
+            <li class="chat chat-incoming">
+                <p>Hello! I'm your Cathay Assistance AI. How can I help with your travel, flights, or destination today?</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Ask about flights, destinations, or travel..." rows="1"></textarea>
+            <button id="send-btn">Send</button>
+        </div>
+    </main>
+
+    <script>
+        // --- Configuration ---
+        // SECURITY WARNING: This is a frontend demonstration. In production, this API call must be made from a secure backend server.
+        const API_KEY = "sk-3fd9332a84e84d1a98220ea099481ceb";
+        const API_URL = "https://api.openai.com/v1/chat/completions";
+
+        // --- DOM Elements ---
+        const chatInput = document.querySelector('.chat-input textarea');
+        const sendChatBtn = document.querySelector('#send-btn');
+        const chatbox = document.querySelector('.chatbox');
+
+        // --- Core Functions ---
+        // Creates a message element and adds it to the chatbox:cite[4]
+        const createChatLi = (message, className) => {
+            const chatLi = document.createElement('li');
+            chatLi.classList.add('chat', className);
+            const paragraph = document.createElement('p');
+            paragraph.textContent = message;
+            chatLi.appendChild(paragraph);
+            return chatLi;
+        };
+
+        // Handles the process of getting a response from the AI:cite[4]
+        const generateResponse = (incomingChatLi) => {
+            const messageElement = incomingChatLi.querySelector('p');
+            const userMessage = chatInput.value.trim();
+
+            // Define the API request options:cite[4]
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: 'gpt-3.5-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'You are a helpful travel assistant for Cathay Assistance. Only answer questions related to airlines, destination information, travel suggestions, and flight information. Politely decline to answer any queries outside these topics.'
+                        },
+                        {
+                            role: 'user',
+                            content: userMessage
+                        }
+                    ],
+                    max_tokens: 500
+                })
+            };
+
+            // Send the request to the API:cite[4]
+            fetch(API_URL, requestOptions)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok. Please check your API key and quota.');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    // Display the AI's response
+                    messageElement.textContent = data.choices[0].message.content.trim();
+                })
+                .catch((error) => {
+                    // Display an error message
+                    console.error('Error:', error);
+                    messageElement.classList.add('error');
+                    messageElement.textContent = 'Oops! Something went wrong. Please try again later.';
+                })
+                .finally(() => {
+                    // Always scroll to the bottom after processing
+                    chatbox.scrollTo(0, chatbox.scrollHeight);
+                });
+        };
+
+        // Main function to handle sending a message
+        const handleChat = () => {
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            // Clear the input field immediately
+            chatInput.value = '';
+
+            // Add the user's message to the chatbox
+            chatbox.appendChild(createChatLi(userMessage, 'chat-outgoing'));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+
+            // Simulate "Thinking..." before the AI responds
+            setTimeout(() => {
+                const incomingChatLi = createChatLi('Thinking...', 'chat-incoming');
+                chatbox.appendChild(incomingChatLi);
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+                generateResponse(incomingChatLi);
+            }, 600);
+        };
+
+        // --- Event Listeners ---
+        sendChatBtn.addEventListener('click', handleChat);
+        // Allow sending a message by pressing Enter (but not Shift+Enter)
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault(); // Prevents new line
+                handleChat();
+            }
+        });
+    </script>
+</body>
+</html>

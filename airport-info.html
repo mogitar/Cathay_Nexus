@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathay Pacific - Airport Info</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="CATHAY.png" alt="Cathay Pacific" class="logo">
+        <button class="sign-in-btn">Sign In / Sign Up</button>
+    </header>
+
+    <main class="main-content">
+        <section class="airport-info-section">
+            <h2>JFK Airport Information</h2>
+            
+            <div class="airport-overview">
+                <div class="airport-card">
+                    <h3>Flight Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">Flight:</span>
+                            <span class="value">CX 880</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Destination:</span>
+                            <span class="value">Hong Kong (HKG)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Departure:</span>
+                            <span class="value">18:15</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Status:</span>
+                            <span class="value on-time">On Time</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Check-in:</span>
+                            <span class="value">Terminal 7, Counter 12-18</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Boarding:</span>
+                            <span class="value">17:15 (Gate B25)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="facilities-section">
+                <h3>Airport Facilities</h3>
+                
+                <div class="facility-category">
+                    <h4>Dining</h4>
+                    <div class="facility-list">
+                        <div class="facility-item">
+                            <div class="facility-info">
+                                <h5>Shake Shack</h5>
+                                <p>American • Terminal 4</p>
+                                <p class="facility-hours">Open until 22:00</p>
+                            </div>
+                            <div class="facility-distance">5 min walk</div>
+                        </div>
+                        
+                        <div class="facility-item">
+                            <div class="facility-info">
+                                <h5>Starbucks</h5>
+                                <p>Coffee • Terminal 7</p>
+                                <p class="facility-hours">Open until 23:00</p>
+                            </div>
+                            <div class="facility-distance">2 min walk</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="facility-category">
+                    <h4>Shopping</h4>
+                    <div class="facility-list">
+                        <div class="facility-item">
+                            <div class="facility-info">
+                                <h5>Duty Free</h5>
+                                <p>Perfumes, Liquor, Cosmetics</p>
+                                <p class="facility-hours">Open until 23:30</p>
+                            </div>
+                            <div class="facility-distance">3 min walk</div>
+                        </div>
+                        
+                        <div class="facility-item">
+                            <div class="facility-info">
+                                <h5>Hudson News</h5>
+                                <p>Magazines, Snacks, Souvenirs</p>
+                                <p class="facility-hours">Open 24 hours</p>
+                            </div>
+                            <div class="facility-distance">1 min walk</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="facility-category">
+                    <h4>Services</h4>
+                    <div class="facility-list">
+                        <div class="facility-item">
+                            <div class="facility-info">
+                                <h5>Cathay Pacific Lounge</h5>
+                                <p>Terminal 7, Near Gate B20</p>
+                                <p class="facility-hours">Open until last departure</p>
+                            </div>
+                            <div class="facility-distance">8 min walk</div>
+                        </div>
+                        
+                        <div class="facility-item">
+                            <div class="facility-info">
+                                <h5>Currency Exchange</h5>
+                                <p>Terminal 7, Level 2</p>
+                                <p class="facility-hours">Open until 22:00</p>
+                            </div>
+                            <div class="facility-distance">5 min walk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="terminal-map">
+                <h3>Terminal 7 Map</h3>
+                <div class="map-diagram">
+                    <div class="map-layout">
+                        <div class="gate-area">
+                            <div class="gate gate-b25 active">B25</div>
+                            <div class="gate gate-b24">B24</div>
+                            <div class="gate gate-b26">B26</div>
+                        </div>
+                        <div class="facilities-area">
+                            <div class="facility lounge">Lounge</div>
+                            <div class="facility dining">Dining</div>
+                            <div class="facility shopping">Shopping</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="color-box active-gate"></div>
+                        <span>Your Gate</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box lounge"></div>
+                        <span>Lounge</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box dining"></div>
+                        <span>Dining</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box shopping"></div>
+                        <span>Shopping</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <span>Home</span>
+        </a>
+        <a href="airport-info.html" class="nav-item active">
+            <div class="nav-icon">✈️</div>
+            <span>Airport</span>
+        </a>
+        <a href="onboard-services.html" class="nav-item">
+            <div class="nav-icon">🍽️</div>
+            <span>Onboard</span>
+        </a>
+        <a href="travel-checklist.html" class="nav-item">
+            <div class="nav-icon">📍</div>
+            <span>Travel Map</span>
+        </a>
+    </nav>
+
+    <script src="airport-info.js"></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathay Pacific - Travel Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="CATHAY.png" alt="Cathay Pacific" class="logo">
+        <button class="sign-in-btn">Sign In / Sign Up</button>
+    </header>
+
+    <main class="main-content">
+        <section class="travel-map-section">
+            <h2>My Travel Map</h2>
+            
+            <!-- Interactive Map Section -->
+            <div class="interactive-map-section">
+                <h3>Departure     Destination</h3>
+                <div class="city-buttons">
+                    <button class="city-btn active" data-city="hongkong">Hong Kong</button>
+                    <button class="city-btn" data-city="newyork">New York</button>
+                </div>
+                
+                <div class="map-container">
+                    <div id="city-map" class="city-map">
+                        <iframe 
+                            id="map-frame"
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d472322.0488005746!2d113.80906757807455!3d22.3530244703201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403e2eda332980f%3A0xf08ab3badbeac97c!2z6aaZ5riv!5e0!3m2!1szh-TW!2shk!4v1759915730666!5m2!1szh-TW!2shk">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Original World Map Visualization -->
+            <div class="map-container">
+                <div class="map-visual">
+                    <div class="world-map">
+                        <div class="region asia">
+                            <h5>Asia</h5>
+                            <div class="visited">Hong Kong</div>
+                            <div class="visited">Tokyo</div>
+                            <div class="not-visited">Seoul</div>
+                        </div>
+                        <div class="region europe">
+                            <h5>Europe</h5>
+                            <div class="visited">London</div>
+                            <div class="not-visited">Paris</div>
+                            <div class="visited">Rome</div>
+                        </div>
+                        <div class="region americas">
+                            <h5>Americas</h5>
+                            <div class="visited">New York</div>
+                            <div class="not-visited">Los Angeles</div>
+                            <div class="not-visited">Vancouver</div>
+                        </div>
+                        <div class="region oceania">
+                            <h5>Oceania</h5>
+                            <div class="visited">Sydney</div>
+                            <div class="not-visited">Auckland</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Countries Visited</h3>
+                        <div class="stat-number">14</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Cities Visited</h3>
+                        <div class="stat-number">27</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Flights Taken</h3>
+                        <div class="stat-number">42</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Original Destinations List -->
+            <div class="destinations-list">
+                <h3>My Destinations</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="visited">Visited</button>
+                    <button class="filter-btn" data-filter="not-visited">Not Visited</button>
+                </div>
+                
+                <div class="destinations-container">
+                    <div class="destination-card visited" data-city="hongkong">
+                        <div class="destination-info">
+                            <h4>Hong Kong</h4>
+                            <p>Last visited: Oct 2023</p>
+                            <div class="tags">
+                                <span class="tag">Business</span>
+                                <span class="tag">Asia</span>
+                            </div>
+                        </div>
+                        <div class="destination-status">
+                            <span class="status visited">✓ Visited</span>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card visited">
+                        <div class="destination-info">
+                            <h4>Tokyo</h4>
+                            <p>Last visited: Aug 2023</p>
+                            <div class="tags">
+                                <span class="tag">Leisure</span>
+                                <span class="tag">Asia</span>
+                            </div>
+                        </div>
+                        <div class="destination-status">
+                            <span class="status visited">✓ Visited</span>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card not-visited">
+                        <div class="destination-info">
+                            <h4>Seoul</h4>
+                            <p>Next trip: Jan 2024</p>
+                            <div class="tags">
+                                <span class="tag">Leisure</span>
+                                <span class="tag">Asia</span>
+                            </div>
+                        </div>
+                        <div class="destination-status">
+                            <span class="status not-visited">○ Plan to Visit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card visited" data-city="newyork">
+                        <div class="destination-info">
+                            <h4>New York</h4>
+                            <p>Last visited: Current</p>
+                            <div class="tags">
+                                <span class="tag">Business</span>
+                                <span class="tag">Americas</span>
+                            </div>
+                        </div>
+                        <div class="destination-status">
+                            <span class="status visited">✓ Visited</span>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card visited">
+                        <div class="destination-info">
+                            <h4>London</h4>
+                            <p>Last visited: Jun 2023</p>
+                            <div class="tags">
+                                <span class="tag">Business</span>
+                                <span class="tag">Europe</span>
+                            </div>
+                        </div>
+                        <div class="destination-status">
+                            <span class="status visited">✓ Visited</span>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card visited">
+                        <div class="destination-info">
+                            <h4>Rome</h4>
+                            <p>Last visited: Apr 2023</p>
+                            <div class="tags">
+                                <span class="tag">Leisure</span>
+                                <span class="tag">Europe</span>
+                            </div>
+                        </div>
+                        <div class="destination-status">
+                            <span class="status visited">✓ Visited</span>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card visited">
+                        <div class="destination-info">
+                            <h4>Sydney</h4>
+                            <p>Last visited: Feb 2023</p>
+                            <div class="tags">
+                                <span class="tag">Business</span>
+                                <span class="tag">Oceania</span>
+                            </div>
+                        </div>
+                        <div class="destination-status">
+                            <span class="status visited">✓ Visited</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <span>Home</span>
+        </a>
+        <a href="airport-info.html" class="nav-item">
+            <div class="nav-icon">✈️</div>
+            <span>Airport</span>
+        </a>
+        <a href="onboard-services.html" class="nav-item">
+            <div class="nav-icon">🍽️</div>
+            <span>Onboard</span>
+        </a>
+        <a href="travel-checklist.html" class="nav-item active">
+            <div class="nav-icon">📍</div>
+            <span>Travel Map</span>
+        </a>
+    </nav>
+
+    <script src="travel-checklist.js"></script>
+</body>
+</html>
