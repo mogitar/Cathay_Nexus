@@ -8,6 +8,217 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Meal Preference Section Styles */
+.meal-preference-section {
+    margin-bottom: 30px;
+}
+
+.preference-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 2px solid #e8f4f8;
+}
+
+.preference-description {
+    font-size: 1.1rem;
+    color: #005D63;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.preference-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.preference-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #e0e0e0;
+}
+
+.preference-option:hover {
+    border-color: #005D63;
+    transform: translateY(-2px);
+}
+
+.preference-option input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #005D63;
+    border-radius: 50%;
+    margin-right: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.preference-option input[type="radio"]:checked + .radio-custom {
+    background: #005D63;
+    border-color: #005D63;
+}
+
+.preference-option input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+.option-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.preference-note {
+    background: #e8f4f8;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #005D63;
+}
+
+.preference-note p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #005D63;
+    font-style: italic;
+}
+
+/* Meal Selection Section with smooth transition */
+.meal-selection {
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.meal-selection.hidden {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.meal-selection:not(.hidden) {
+    opacity: 1;
+    max-height: 1000px;
+    margin-bottom: 30px;
+}
+
+/* Enhanced meal options styling */
+.meal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.meal-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.meal-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 93, 99, 0.1);
+}
+
+.meal-info h4 {
+    margin-bottom: 8px;
+    color: #005D63;
+    font-size: 1.2rem;
+}
+
+.meal-info p {
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.meal-tags {
+    display: flex;
+    gap: 8px;
+}
+
+.meal-tags .tag {
+    background: #e0e0e0;
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.meal-tags .dietary {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+/* Responsive design for meal preference */
+@media (max-width: 768px) {
+    .preference-options {
+        gap: 10px;
+    }
+    
+    .preference-option {
+        padding: 12px;
+    }
+    
+    .option-text {
+        font-size: 0.95rem;
+    }
+    
+    .meal-option {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .select-btn {
+        align-self: flex-end;
+    }
+}
+
+/* Animation for section transitions */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.meal-selection:not(.hidden) {
+    animation: fadeIn 0.5s ease;
+}
+
 body {
     background: #005D63; /* Cathay Pacific Teal */
     display: flex;
