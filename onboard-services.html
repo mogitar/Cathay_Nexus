@@ -22,16 +22,38 @@
                     <button class="tab-btn" data-tab="entertainment">Entertainment</button>
                     <button class="tab-btn" data-tab="comfort">Comfort</button>
                 </div>
-                
+                <!--why are we still here, just to suffer?-->
                 <div class="tab-content active" id="dining">
-                    <h3>In-Flight Dining</h3>
-                    
-                    <div class="meal-selection">
-                        <h4>Pre-order Your Meal</h4>
+                    <div class="meal-preference-section">
+                        <h3>Meal Preference</h3>
+                        <div class="preference-card">
+                            <p class="preference-description">Would you like to have a meal during your flight?</p>
+                            <div class="preference-options">
+                                <label class="preference-option">
+                                    <input type="radio" name="meal-preference" value="yes" checked>
+                                    <span class="radio-custom"></span>
+                                    <span class="option-text">Yes, I would like a meal</span>
+                                </label>
+                                <label class="preference-option">
+                                    <input type="radio" name="meal-preference" value="no">
+                                    <span class="radio-custom"></span>
+                                    <span class="option-text">No, I don't want a meal</span>
+                                </label>
+                            </div>
+                            <div class="preference-note">
+                                <p>💡 Your preference helps us reduce food waste and serve you better.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meal indication-->
+                    <div id="meal-selection-section" class="meal-selection">
+                        <h3>Pre-order Your Meal</h3>
+                        
                         <div class="meal-options">
                             <div class="meal-option">
                                 <div class="meal-info">
-                                    <h5>Western Selection</h5>
+                                    <h4>Western Selection</h4>
                                     <p>Grilled chicken with roasted vegetables and mashed potatoes</p>
                                     <div class="meal-tags">
                                         <span class="tag">Main</span>
@@ -43,8 +65,8 @@
                             
                             <div class="meal-option">
                                 <div class="meal-info">
-                                    <h5>Asian Vegetarian</h5>
-                                    <p>Vegetable curry with jasmine rice and lentil soup</p>
+                                    <h4>Asian Vegetarian</h4>
+                                    <p>Vegetable curry with jasmine rice</p>
                                     <div class="meal-tags">
                                         <span class="tag">Main</span>
                                         <span class="tag dietary">Vegetarian</span>
@@ -55,7 +77,7 @@
                             
                             <div class="meal-option">
                                 <div class="meal-info">
-                                    <h5>Seafood Special</h5>
+                                    <h4>Seafood Special</h4>
                                     <p>Poached salmon with dill sauce and seasonal vegetables</p>
                                     <div class="meal-tags">
                                         <span class="tag">Main</span>
@@ -68,10 +90,10 @@
                     </div>
                     
                     <div class="beverage-selection">
-                        <h4>Beverages</h4>
+                        <h3>Beverages</h3>
                         <div class="beverage-options">
                             <div class="beverage-category">
-                                <h5>Wines</h5>
+                                <h4>Wines</h4>
                                 <div class="beverage-list">
                                     <div class="beverage-item">
                                         <span class="beverage-name">Chardonnay, California</span>
@@ -85,7 +107,7 @@
                             </div>
                             
                             <div class="beverage-category">
-                                <h5>Non-Alcoholic</h5>
+                                <h4>Non-Alcoholic</h4>
                                 <div class="beverage-list">
                                     <div class="beverage-item">
                                         <span class="beverage-name">Fresh Orange Juice</span>
@@ -104,6 +126,7 @@
                         </div>
                     </div>
                 </div>
+                
                 
                 <div class="tab-content" id="entertainment">
                     <h3>Entertainment</h3>
@@ -214,22 +237,21 @@
             <div class="nav-icon">🏠</div>
             <span>Home</span>
         </a>
-        
-        <a href="airport-info.html" class="nav-item">
-            <div class="nav-icon">✈️</div>
-            <span>Airport</span>
+        <a href="travel-checklist.html" class="nav-item">
+            <div class="nav-icon">📍</div>
+            <span>Travel Map</span>
         </a>
         <a href="onboard-services.html" class="nav-item active">
             <div class="nav-icon">🍽️</div>
             <span>Onboard</span>
         </a>
-        <a href="travel-checklist.html" class="nav-item">
-            <div class="nav-icon">📍</div>
-            <span>Travel Map</span>
+        <a href="airport-info.html" class="nav-item">
+            <div class="nav-icon">✈️</div>
+            <span>Airport</span>
         </a>
+        
     </nav>
 
     <script src="/Cathay_Nexus/onboard-services.js"></script>
 </body>
-
 </html>
