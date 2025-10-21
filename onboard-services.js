@@ -1,4 +1,4 @@
-// onboard-services.js
+// onboard-services.js - Updated with meal preference functionality
 
 document.addEventListener('DOMContentLoaded', function() {
     // Tab switching functionality
@@ -19,8 +19,129 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById(tabId).classList.add('active');
         });
     });
+
+    // Meal Preference Functionality
+    const mealPreferenceRadios = document.querySelectorAll('input[name="meal-preference"]');
+    const mealSelectionSection = document.getElementById('meal-selection-section');
     
-    // Order management
+    // Initialize based on default selection
+    updateMealSelectionVisibility();
+    
+    // Add event listeners to radio buttons
+    mealPreferenceRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            updateMealSelectionVisibility();
+            saveMealPreference(this.value);
+            showPreferenceConfirmation(this.value);
+        });
+    });
+    
+    function updateMealSelectionVisibility() {
+        const selectedPreference = document.querySelector('input[name="meal-preference"]:checked').value;
+        
+        if (selectedPreference === 'yes') {
+            mealSelectionSection.classList.remove('hidden');
+        } else {
+            mealSelectionSection.classList.add('hidden');
+            // Clear any selected meals when hiding the section
+            clearSelectedMeals();
+        }
+    }
+    
+    function saveMealPreference(preference) {
+        // Save to localStorage for persistence
+        localStorage.setItem('cathayMealPreference', preference);
+        
+        // In a real app, you would send this to your backend
+        console.log(`Meal preference saved: ${preference}`);
+    }
+    
+    function clearSelectedMeals() {
+        // Clear any selected meal buttons
+        const selectedButtons = document.querySelectorAll('.select-btn.selected');
+        selectedButtons.forEach(button => {
+            button.classList.remove('selected');
+            button.textContent = 'Select';
+        });
+        
+        // Remove any meal orders from current orders
+        const mealOrders = document.querySelectorAll('.order-item');
+        mealOrders.forEach(order => {
+            if (order.querySelector('h5').textContent.includes('Meal')) {
+                order.remove();
+            }
+        });
+    }
+    
+    function showPreferenceConfirmation(preference) {
+        const message = preference === 'yes' 
+            ? 'Great! You can now pre-order your meal.' 
+            : 'Noted. No meal will be served. You can still order beverages.';
+        
+        showConfirmation(message);
+    }
+    
+    // Load saved preference on page load
+    function loadSavedPreference() {
+        const savedPreference = localStorage.getItem('cathayMealPreference');
+        if (savedPreference) {
+            const radioToSelect = document.querySelector(`input[name="meal-preference"][value="${savedPreference}"]`);
+            if (radioToSelect) {
+                radioToSelect.checked = true;
+                updateMealSelectionVisibility();
+            }
+        }
+    }
+    
+    // Enhanced meal selection functionality
+    const mealSelectButtons = document.querySelectorAll('.select-btn');
+    mealSelectButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Only allow selection if meal preference is "yes"
+            const mealPreference = document.querySelector('input[name="meal-preference"]:checked').value;
+            
+            if (mealPreference !== 'yes') {
+                showConfirmation('Please select "Yes" for meal preference first.');
+                return;
+            }
+            
+            const mealOption = this.closest('.meal-option');
+            const mealName = mealOption.querySelector('h4').textContent;
+            const mealDescription = mealOption.querySelector('p').textContent;
+            
+            // Toggle selection state
+            const isCurrentlySelected = this.classList.contains('selected');
+            
+            // Clear other selections (only one meal can be selected)
+            mealSelectButtons.forEach(btn => {
+                btn.classList.remove('selected');
+                btn.textContent = 'Select';
+            });
+            
+            if (!isCurrentlySelected) {
+                this.classList.add('selected');
+                this.textContent = 'Selected ✓';
+                addOrder(mealName, 'meal', mealDescription);
+                showConfirmation(`${mealName} has been selected!`);
+            } else {
+                // If deselecting, remove from orders
+                removeMealOrder(mealName);
+            }
+        });
+    });
+    
+    function removeMealOrder(mealName) {
+        const orders = document.querySelectorAll('.order-item');
+        orders.forEach(order => {
+            const orderTitle = order.querySelector('h5').textContent;
+            if (orderTitle === mealName) {
+                order.remove();
+            }
+        });
+        updateNoOrdersDisplay();
+    }
+    
+    // Order management (existing functionality with enhancements)
     let orders = JSON.parse(localStorage.getItem('cathayOrders')) || [];
     const ordersList = document.querySelector('.orders-list');
     const noOrders = document.querySelector('.no-orders');
@@ -94,6 +215,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to cancel an order
     function cancelOrder(index) {
         if (orders[index].status === 'preparing') {
+            // If canceling a meal, also reset the select button
+            if (orders[index].category === 'meal') {
+                const mealSelectButtons = document.querySelectorAll('.select-btn');
+                mealSelectButtons.forEach(button => {
+                    if (button.textContent === 'Selected ✓') {
+                        button.classList.remove('selected');
+                        button.textContent = 'Select';
+                    }
+                });
+            }
+            
             orders.splice(index, 1);
             updateOrdersDisplay();
         } else {
@@ -101,20 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Meal selection functionality
-    const mealSelectButtons = document.querySelectorAll('.select-btn');
-    mealSelectButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const mealOption = this.closest('.meal-option');
-            const mealName = mealOption.querySelector('h5').textContent;
-            const mealDescription = mealOption.querySelector('p').textContent;
-            
-            addOrder(mealName, 'meal', mealDescription);
-            
-            // Show confirmation
-            showConfirmation(`${mealName} has been added to your orders!`);
-        });
-    });
+    function updateNoOrdersDisplay() {
+        const orderItems = document.querySelectorAll('.order-item');
+        if (orderItems.length === 0) {
+            noOrders.style.display = 'block';
+        } else {
+            noOrders.style.display = 'none';
+        }
+    }
     
     // Beverage order functionality
     const beverageOrderButtons = document.querySelectorAll('.order-btn');
@@ -169,8 +295,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const category = entItem.querySelector('h5').textContent;
             
             showConfirmation(`Opening ${category} selection...`);
-            
-            // In a real app, this would navigate to the entertainment section
         });
     });
     
@@ -192,13 +316,17 @@ document.addEventListener('DOMContentLoaded', function() {
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             font-weight: 600;
+            text-align: center;
+            max-width: 300px;
         `;
         
         document.body.appendChild(confirmation);
         
         // Remove after 3 seconds
         setTimeout(() => {
-            document.body.removeChild(confirmation);
+            if (document.body.contains(confirmation)) {
+                document.body.removeChild(confirmation);
+            }
         }, 3000);
     }
     
@@ -219,6 +347,13 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     
     specialMealBtn.addEventListener('click', function() {
+        // Check if meal preference is set to yes
+        const mealPreference = document.querySelector('input[name="meal-preference"]:checked').value;
+        if (mealPreference !== 'yes') {
+            showConfirmation('Please select "Yes" for meal preference first.');
+            return;
+        }
+        
         const mealType = prompt('Please specify your special meal requirement (e.g., gluten-free, kosher, vegan):');
         if (mealType) {
             addOrder(`Special Meal: ${mealType}`, 'meal', 'Special dietary requirement');
@@ -229,11 +364,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add the special meal button to the dining section
     const diningSection = document.getElementById('dining');
     if (diningSection) {
-        diningSection.querySelector('.meal-selection').appendChild(specialMealBtn);
+        const mealSelectionDiv = diningSection.querySelector('.meal-selection');
+        if (mealSelectionDiv) {
+            mealSelectionDiv.appendChild(specialMealBtn);
+        }
     }
     
     // Initialize orders display
     updateOrdersDisplay();
+    
+    // Load saved meal preference
+    loadSavedPreference();
     
     // Add clear all orders button
     const clearOrdersBtn = document.createElement('button');
@@ -254,6 +395,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (confirm('Are you sure you want to clear all orders?')) {
             orders = [];
             updateOrdersDisplay();
+            
+            // Also reset meal selection buttons
+            mealSelectButtons.forEach(button => {
+                button.classList.remove('selected');
+                button.textContent = 'Select';
+            });
+            
             showConfirmation('All orders have been cleared!');
         }
     });
